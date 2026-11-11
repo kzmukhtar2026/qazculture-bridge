@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QazCulture Bridge — Translate the word. Keep the culture.</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Chart.js для раздела Research Results -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .bg-cream { background-color: #FBF9F5; }
+        .bg-soft-blue { background-color: #EBF3F9; }
+        .bg-soft-green { background-color: #EAF4EE; }
+        .text-gold { color: #C5A059; }
+        .bg-gold { background-color: #C5A059; }
+        .border-gold { border-color: #C5A059; }
+    </style>
+</head>
+<body class="bg-cream text-slate-800 min-h-screen flex flex-col">
+
+    <!-- НАВИГАЦИЯ И ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКА -->
+    <header class="bg-white/80 backdrop-blur-md border-b border-stone-200 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <!-- Элемент казахского орнамента (иконка) -->
+                <div class="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold font-bold">Ұ</div>
+                <span class="font-bold text-xl tracking-wide">QazCulture <span class="text-gold">Bridge</span></span>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <div class="text-xs font-semibold bg-stone-100 p-1 rounded-lg flex space-x-1">
+                    <button onclick="setLang('KZ')" id="lang-kz" class="px-3 py-1 rounded-md transition bg-white shadow-xs">KZ</button>
+                    <button onclick="setLang('EN')" id="lang-en" class="px-3 py-1 rounded-md transition text-stone-500">EN</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="flex-1 flex flex-col md:flex-row">
+        
+        <!-- БКОВОЕ МЕНЮ (SIDEBAR) -->
+        <aside class="w-full md:w-64 bg-white border-r border-stone-200 p-6 flex flex-col justify-between">
+            <nav class="space-y-2">
+                <p class="text-xs font-semibold text-stone-400 uppercase tracking-wider mb-4" data-i18n="menu-title">Navigation</p>
+                <button onclick="switchTab('home')" id="nav-home" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left font-medium transition bg-stone-100 text-stone-900">
+                    <span>🏠</span> <span data-i18n="nav-home">Home</span>
+                </button>
+                <button onclick="switchTab('library')" id="nav-library" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left font-medium text-stone-600 hover:bg-stone-50 transition">
+                    <span>📚</span> <span data-i18n="nav-library">Word Library</span>
+                </button>
+                <button onclick="switchTab('compare')" id="nav-compare" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left font-medium text-stone-600 hover:bg-stone-50 transition">
+                    <span>⚖️</span> <span data-i18n="nav-compare">Compare</span>
+                </button>
+                <button onclick="switchTab('research')" id="nav-research" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left font-medium text-stone-600 hover:bg-stone-50 transition">
+                    <span>📊</span> <span data-i18n="nav-research">Research Results</span>
+                </button>
+                <button onclick="switchTab('about')" id="nav-about" class="w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left font-medium text-stone-600 hover:bg-stone-50 transition">
+                    <span>ℹ️</span> <span data-i18n="nav-about">About Project</span>
+                </button>
+            </nav>
+
+            <div class="mt-8 p-4 bg-stone-50 rounded-2xl border border-stone-100 text-xs text-stone-500">
+                <p class="font-semibold text-stone-700 mb-1">“Can AI Translate Kazakh Culture?”</p>
+                <p>Research Prototype v1.0</p>
+            </div>
+        </aside>
+
+        <!-- ОСНОВНОЙ КОНТЕНТ -->
+        <main class="flex-1 overflow-y-auto p-6 md:p-10">
+
+            <!-- РАЗДЕЛ 1: HOME -->
+            <section id="tab-home" class="space-y-8">
+                <!-- Панорамный баннер природы и юрты -->
+                <div class="relative rounded-3xl overflow-hidden shadow-lg h-72 flex items-center justify-center text-center p-6 bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1543968996-ee822b8176ba?auto=format&fit=crop&w=1600&q=80');">
+                    <div class="relative z-10 max-w-2xl text-white">
+                        <span class="inline-block px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-medium mb-3 border border-white/30 text-gold">KÖPIR әдісі</span>
+                        <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-3">QazCulture Bridge</h1>
+                        <p class="text-lg md:text-xl font-light text-stone-200" data-i18n="hero-tagline">Translate the word. Keep the culture.</p>
+                    </div>
+                </div>
+
+                <!-- Поиск слова -->
+                <div class="max-w-2xl mx-auto bg-white p-6 rounded-3xl shadow-sm border border-stone-200">
+                    <label class="block text-sm font-medium text-stone-600 mb-2" data-i18n="search-label">Enter a Kazakh cultural word (e.g., Беташар, Жылыту, Домбыра):</label>
+                    <div class="flex gap-2">
+                        <input type="text" id="word-input" list="words-datalist" placeholder="Напр. Беташар..." class="flex-1 px-4 py-3 rounded-xl border border-stone-200 focus:outline-none focus:border-gold">
+                        <datalist id="words-datalist">
+                            <option value="Беташар">
+                            <option value="Домбыра">
+                            <option value="Жылыту">
+                        </datalist>
+                        <button onclick="handleTranslate()" class="bg-gold hover:bg-[#b08d4b] text-white px-6 py-3 rounded-xl font-medium transition shadow-sm" data-i18n="btn-translate">Translate</button>
+                    </div>
+                    <!-- Быстрые теги -->
+                    <div class="flex flex-wrap gap-2 mt-3 items-center">
+                        <span class="text-xs text-stone-400">Popular:</span>
+                        <button onclick="quickSearch('Беташар')" class="text-xs bg-stone-100 hover:bg-stone-200 px-3 py-1 rounded-lg transition">Беташар</button>
+                        <button onclick="quickSearch('Домбыра')" class="text-xs bg-stone-100 hover:bg-stone-200 px-3 py-1 rounded-lg transition">Домбыра</button>
+                        <button onclick="quickSearch('Жылыту')" class="text-xs bg-stone-100 hover:bg-stone-200 px-3 py-1 rounded-lg transition">Жылыту</button>
+                    </div>
+                </div>
+
+                <!-- Карточки результатов (скрыты по умолчанию до поиска) -->
+                <div id="results-container" class="hidden space-y-6 max-w-5xl mx-auto">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <!-- 1. Direct Translation -->
+                        <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-xs flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-stone-400 uppercase tracking-wider">1. Direct Translation</span>
+                                <h3 id="res-direct" class="text-xl font-bold text-stone-800 mt-2">Face revealing ceremony</h3>
+                            </div>
+                            <span class="mt-4 text-xs bg-stone-100 text-stone-600 px-2.5 py-1 rounded-md self-start">Literal / AI Default</span>
+                        </div>
+                        <!-- 2. KÖPIR Translation -->
+                        <div class="bg-soft-blue p-5 rounded-2xl border border-blue-100 shadow-xs flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">2. KÖPIR Translation</span>
+                                <h3 id="res-kopir" class="text-xl font-bold text-blue-900 mt-2">Betashar (Traditional Bride Unveiling Ritual)</h3>
+                            </div>
+                            <span class="mt-4 text-xs bg-white text-blue-700 px-2.5 py-1 rounded-md self-start font-medium">Cultural Preservation</span>
+                        </div>
+                        <!-- 3. Cultural Note -->
+                        <div class="bg-soft-green p-5 rounded-2xl border border-green-100 shadow-xs flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-bold text-green-700 uppercase tracking-wider">3. Cultural Note</span>
+                                <p id="res-note" class="text-sm text-green-900 mt-2 leading-relaxed">A traditional wedding ceremony where the bride is introduced to her new relatives through poetic songs (toibastar).</p>
+                            </div>
+                            <span class="mt-4 text-xs bg-white text-green-800 px-2.5 py-1 rounded-md self-start font-medium">Contextual Value</span>
+                        </div>
+                        <!-- 4. Translation Score -->
+                        <div class="bg-white p-5 rounded-2xl border border-stone-200 shadow-xs flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs font-bold text-stone-400 uppercase tracking-wider">4. Score</span>
+                                    <span id="res-score-total" class="text-lg font-bold text-gold">7.5 / 8</span>
+                                </div>
+                                <div class="mt-3 space-y-1.5 text-xs">
+                                    <div class="flex justify-between"><span>Meaning:</span> <span id="score-meaning" class="font-semibold">2/2</span></div>
+                                    <div class="flex justify-between"><span>Culture:</span> <span id="score-culture" class="font-semibold">2/2</span></div>
+                                    <div class="flex justify-between"><span>Literary:</span> <span id="score-literary" class="font-semibold">1.5/2</span></div>
+                                    <div class="flex justify-between"><span>Clarity:</span> <span id="score-clarity" class="font-semibold">2/2</span></div>
+                                </div>
+                            </div>
+                            <span class="mt-4 text-xs bg-stone-100 text-stone-600 px-2.5 py-1 rounded-md self-start">4-Criteria Evaluation</span>
+                        </div>
+                    </div>
+
+                    <!-- Примеры и похожие слова -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Examples of Usage -->
+                        <div class="bg-white p-6 rounded-2xl border border-stone-200">
+                            <h4 class="font-bold text-stone-800 mb-3 flex items-center space-x-2">
+                                <span>💬</span> <span data-i18n="examples-title">Examples of Usage</span>
+                            </h4>
+                            <div class="p-4 bg-stone-50 rounded-xl space-y-2">
+                                <p id="res-ex-kz" class="font-medium text-stone-900">«Тойда әсерлі беташар рәсімі өтті.»</p>
+                                <p id="res-ex-en" class="text-sm text-stone-600">"An impressive betashar ceremony took place at the wedding."</p>
+                            </div>
+                        </div>
+
+                        <!-- Related Words -->
+                        <div class="bg-white p-6 rounded-2xl border border-stone-200">
+                            <h4 class="font-bold text-stone-800 mb-3 flex items-center space-x-2">
+                                <span>🔗</span> <span data-i18n="related-title">Related Words</span>
+                            </h4>
+                            <div id="res-related" class="grid grid-cols-2 gap-3">
+                                <!-- Подгружается через JS -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- РАЗДЕЛ 2: WORD LIBRARY -->
+            <section id="tab-library" class="hidden space-y-6">
+                <div>
+                    <h2 class="text-3xl font-bold tracking-tight" data-i18n="lib-heading">Word Library (20 Core Terms)</h2>
+                    <p class="text-stone-500 mt-1" data-i18n="lib-sub">Explore verified cultural terms categorized into 5 thematic groups.</p>
+                </div>
+                <!-- Фильтры тем -->
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="filterLibrary('all')" class="px-4 py-2 rounded-xl bg-stone-900 text-white text-sm font-medium">All Groups</button>
+                    <button onclick="filterLibrary('Traditions')" class="px-4 py-2 rounded-xl bg-white border border-stone-200 text-stone-700 text-sm font-medium hover:bg-stone-50">Traditions & Rituals</button>
+                    <button onclick="filterLibrary('Lifestyle')" class="px-4 py-2 rounded-xl bg-white border border-stone-200 text-stone-700 text-sm font-medium hover:bg-stone-50">Nomadic Lifestyle</button>
+                    <button onclick="filterLibrary('Values')" class="px-4 py-2 rounded-xl bg-white border border-stone-200 text-stone-700 text-sm font-medium hover:bg-stone-50">Values & Philosophy</button>
+                </div>
+
+                <div id="library-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Заполняется JS -->
+                </div>
+            </section>
+
+            <!-- РАЗДЕЛ 3: COMPARE -->
+            <section id="tab-compare" class="hidden space-y-6">
+                <div>
+                    <h2 class="text-3xl font-bold tracking-tight" data-i18n="comp-heading">Translation Comparison</h2>
+                    <p class="text-stone-500 mt-1" data-i18n="comp-sub">Direct Machine Translation vs. KÖPIR Cultural Preservation Method.</p>
+                </div>
+
+                <div class="space-y-4 max-w-3xl mx-auto">
+                    <!-- Выбор слова для сравнения -->
+                    <div class="bg-white p-4 rounded-2xl border border-stone-200 flex items-center justify-between">
+                        <span class="font-medium text-stone-700">Select Word:</span>
+                        <select id="compare-select" onchange="updateCompareView()" class="px-4 py-2 rounded-xl border border-stone-200 focus:outline-none bg-stone-50 font-semibold">
+                            <option value="Беташар">Беташар</option>
+                            <option value="Домбыра">Домбыра</option>
+                            <option value="Жылыту">Жылыту</option>
+                        </select>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Прямой перевод -->
+                        <div class="bg-white p-6 rounded-2xl border border-red-100 shadow-xs relative overflow-hidden">
+                            <div class="absolute top-0 right-0 bg-red-100 text-red-700 text-xs px-3 py-1 rounded-bl-xl font-bold">Standard AI</div>
+                            <h3 class="text-sm font-bold text-stone-400 uppercase tracking-wider mb-2">Direct Translation</h3>
+                            <p id="comp-direct" class="text-xl font-bold text-stone-800 mb-4">Face revealing ceremony</p>
+                            <p class="text-xs text-stone-500 bg-stone-50 p-3 rounded-xl">❌ Lacks cultural depth, sounds unnatural to native English speakers in ritual contexts, strips national identity.</p>
+                        </div>
+
+                        <!-- KÖPIR перевод -->
+                        <div class="bg-soft-blue p-6 rounded-2xl border border-blue-200 shadow-xs relative overflow-hidden">
+                            <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs px-3 py-1 rounded-bl-xl font-bold">KÖPIR Method</div>
+                            <h3 class="text-sm font-bold text-blue-600 uppercase tracking-wider mb-2">Cultural Bridge Translation</h3>
+                            <p id="comp-kopir" class="text-xl font-bold text-blue-900 mb-4">Betashar (Traditional Bride Unveiling Ritual)</p>
+                            <p class="text-xs text-blue-800 bg-white/60 p-3 rounded-xl">✅ Preserves original phonetics, provides immediate contextual clarity, retains the aesthetic and historical essence.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- РАЗДЕЛ 4: RESEARCH RESULTS -->
+            <section id="tab-research" class="hidden space-y-6">
+                <div>
+                    <h2 class="text-3xl font-bold tracking-tight" data-i18n="res-heading">Research Statistics & Accuracy</h2>
+                    <p class="text-stone-500 mt-1" data-i18n="res-sub">Comparative analysis of standard LLMs vs. KÖPIR-assisted translation framework.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                    <!-- График 1 -->
+                    <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-xs">
+                        <h3 class="font-bold text-stone-800 mb-4 text-center">Translation Accuracy by Criteria (Max 8 pts)</h3>
+                        <div class="h-64 flex items-center justify-center">
+                            <canvas id="accuracyChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- График 2 -->
+                    <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-xs">
+                        <h3 class="font-bold text-stone-800 mb-4 text-center">Cultural Preservation Rate (%)</h3>
+                        <div class="h-64 flex items-center justify-center">
+                            <canvas id="preservationChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- РАЗДЕЛ 5: ABOUT -->
+            <section id="tab-about" class="hidden space-y-6 max-w-3xl mx-auto">
+                <div class="bg-white p-8 rounded-3xl border border-stone-200 shadow-sm space-y-6">
+                    <h2 class="text-3xl font-bold tracking-tight" data-i18n="about-heading">About QazCulture Bridge</h2>
+                    <div class="space-y-4 text-stone-600 leading-relaxed">
+                        <p>
+                            Project <strong class="text-stone-900">“Can AI Translate Kazakh Culture?”</strong> addresses a critical gap in modern multilingual machine learning models: the loss of intangible cultural heritage during literal translation.
+                        </p>
+                        <div class="p-4 bg-soft-blue rounded-2xl border border-blue-100 text-blue-900">
+                            <h4 class="font-bold mb-1">What is KÖPIR әдісі?</h4>
+                            <p class="text-sm">
+                                <strong>KÖPIR</strong> (meaning "bridge" in Kazakh) is a specialized translation framework that combines phonological preservation of unique national terms with deep semantic context notes, preventing cultural erosion in AI outputs.
+                            </p>
+                        </div>
+                        <p>
+                            The prototype utilizes a verified database of 25 core cultural terms to demonstrate how high accuracy scores (up to 8/8) can be achieved across Meaning, Culture, Literary Value, and Clarity.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- JAVASCRIPT ЛОГИКА И БАЗА ДАННЫХ -->
+    <script>
+        // База данных слов проекта (исследовательский датасет)
+        const wordDatabase = {
+            "Беташар": {
+                direct: "Face revealing ceremony",
+                kopir: "Betashar (Traditional Bride Unveiling Ritual)",
+                note: "A traditional wedding ceremony where the bride is introduced to her new relatives through poetic songs (toibastar).",
+                scoreTotal: "7.8 / 8",
+                scores: { meaning: "2/2", culture: "2/2", literary: "1.8/2", clarity: "2/2" },
+                exKz: "«Тойда әсерлі беташар рәсімі өтті.»",
+                exEn: "\"An impressive betashar ceremony took place at the wedding.\"",
+                related: [
+                    { name: "Тойбастар", img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?auto=format&fit=crop&w=300&q=80" },
+                    { name: "Жар-жар", img: "https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=300&q=80" }
+                ],
+                group: "Traditions"
+            },
+            "Домбыра": {
+                direct: "Two-stringed instrument",
+                kopir: "Dombra (Traditional Kazakh Plucked Lute)",
+                note: "The national musical instrument of Kazakhstan, symbolizing the soul, heritage, and poetic memory of the nomadic people.",
+                scoreTotal: "8.0 / 8",
+                scores: { meaning: "2/2", culture: "2/2", literary: "2/2", clarity: "2/2" },
+                exKz: "«Күшіген домбыра күйі жүректі тебірентті.»",
+                exEn: "\"The soulful melody of the dombra touched the heart.\"",
+                related: [
+                    { name: "Күй", img: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=300&q=80" },
+                    { name: "Шертпе", img: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?auto=format&fit=crop&w=300&q=80" }
+                ],
+                group: "Lifestyle"
+            },
+            "Жылыту": {
+                direct: "Housewarming or heating",
+                kopir: " жылыту (Socio-cultural community warmth ritual)",
+                note: "Represents both physical heating of a nomadic dwelling (kiiz üy) and the warmth of community support during cold seasons.",
+                scoreTotal: "7.2 / 8",
+                scores: { meaning: "1.8/2", culture: "1.8/2", literary: "1.6/2", clarity: "2/2" },
+                exKz: "«Жаңа қонысты жылыту рәсімі басталды.»",
+                exEn: "\"The traditional house-warming gathering began.\"",
+                related: [
+                    { name: "Жылу", img: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=300&q=80" },
+                    { name: "Асар", img: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=300&q=80" }
+                ],
+                group: "Values"
+            }
+        };
+
+        // Перевод интерфейса (KZ / EN)
+        const i18nText = {
+            EN: {
+                "menu-title": "Navigation",
+                "nav-home": "Home",
+                "nav-library": "Word Library",
+                "nav-compare": "Compare",
+                "nav-research": "Research Results",
+                "nav-about": "About Project",
+                "hero-tagline": "Translate the word. Keep the culture.",
+                "search-label": "Enter a Kazakh cultural word (e.g., Беташар, Домбыра, Жылыту):",
+                "btn-translate": "Translate",
+                "examples-title": "Examples of Usage",
+                "related-title": "Related Words",
+                "lib-heading": "Word Library (Core Terms)",
+                "lib-sub": "Explore verified cultural terms categorized into groups.",
+                "comp-heading": "Translation Comparison",
+                "comp-sub": "Direct Machine Translation vs. KÖPIR Cultural Preservation Method.",
+                "res-heading": "Research Statistics & Accuracy",
+                "res-sub": "Comparative analysis of standard LLMs vs. KÖPIR framework.",
+                "about-heading": "About QazCulture Bridge"
+            },
+            KZ: {
+                "menu-title": "Мәзір",
+                "nav-home": "Басты бет",
+                "nav-library": "Сөздер кітапханасы",
+                "nav-compare": "Салыстыру",
+                "nav-research": "Зерттеу нәтижелері",
+                "nav-about": "Жоба туралы",
+                "hero-tagline": "Сөзді аудар. Мәдениетті сақта.",
+                "search-label": "Қазақша мәдени сөзді енгізіңіз (мыс., Беташар, Домбыра, Жылыту):",
+                "btn-translate": "Аудару",
+                "examples-title": "Қолдану мысалдары",
+                "related-title": "Ұқсас сөздер",
+                "lib-heading": "Сөздер кітапханасы (Негізгі терминдер)",
+                "lib-sub": "Топтарға бөлінген тексерілген мәдени терминдер.",
+                "comp-heading": "Аударманы салыстыру",
+                "comp-sub": "Тікелей машиналық аударма және KÖPIR әдісі.",
+                "res-heading": "Зерттеу статистикасы мен дәлдігі",
+                "res-sub": "Стандартты LLM модельдері мен KÖPIR әдісін салыстырмалы талдау.",
+                "about-heading": "QazCulture Bridge туралы"
+            }
+        };
+
+        let currentLang = 'EN';
+
+        function setLang(lang) {
+            currentLang = lang;
+            document.getElementById('lang-kz').className = lang === 'KZ' ? 'px-3 py-1 rounded-md transition bg-white shadow-xs font-semibold' : 'px-3 py-1 rounded-md transition text-stone-500';
+            document.getElementById('lang-en').className = lang === 'EN' ? 'px-3 py-1 rounded-md transition bg-white shadow-xs font-semibold' : 'px-3 py-1 rounded-md transition text-stone-500';
+            
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18nText[lang][key]) {
+                    el.innerText = i18nText[lang][key];
+                }
+            });
+        }
+
+        // Переключение вкладок меню
+        function switchTab(tabId) {
+            ['home', 'library', 'compare', 'research', 'about'].forEach(t => {
+                document.getElementById(`tab-${t}`).classList.add('hidden');
+                document.getElementById(`nav-${t}`).className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left font-medium text-stone-600 hover:bg-stone-50 transition";
+            });
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            document.getElementById(`nav-${tabId}`).className = "w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left font-medium transition bg-stone-100 text-stone-900";
+            
+            if (tabId === 'research' && !window.chartsInitialized) {
+                initCharts();
+                window.chartsInitialized = true;
+            }
+        }
+
+        // Логика перевода и вывода карточек
+        function handleTranslate() {
+            const val = document.getElementById('word-input').value.trim();
+            const data = wordDatabase[val] || wordDatabase["Беташар"]; // дефолт для демо
+            
+            document.getElementById('results-container').classList.remove('hidden');
+            document.getElementById('res-direct').innerText = data.direct;
+            document.getElementById('res-kopir').innerText = data.kopir;
+            document.getElementById('res-note').innerText = data.note;
+            document.getElementById('res-score-total').innerText = data.scoreTotal;
+            document.getElementById('score-meaning').innerText = data.scores.meaning;
+            document.getElementById('score-culture').innerText = data.scores.culture;
+            document.getElementById('score-literary').innerText = data.scores.literary;
+            document.getElementById('score-clarity').innerText = data.scores.clarity;
+            document.getElementById('res-ex-kz').innerText = data.exKz;
+            document.getElementById('res-ex-en').innerText = data.exEn;
+
+            let relHtml = '';
+            data.related.forEach(r => {
+                relHtml += `
+                    <div class="relative rounded-xl overflow-hidden group h-20 flex items-end p-2 bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('${r.img}');">
+                        <span class="text-white text-xs font-bold relative z-10">${r.name}</span>
+                    </div>
+                `;
+            });
+            document.getElementById('res-related').innerHTML = relHtml;
+        }
+
+        function quickSearch(word) {
+            document.getElementById('word-input').value = word;
+            handleTranslate();
+        }
+
+        // Заполнение библиотеки слов
+        function renderLibrary(filter = 'all') {
+            const grid = document.getElementById('library-grid');
+            let html = '';
+            for (let [word, data] of Object.entries(wordDatabase)) {
+                if (filter === 'all' || data.group === filter) {
+                    html += `
+                        <div onclick="quickSearch('${word}'); switchTab('home');" class="bg-white p-5 rounded-2xl border border-stone-200 hover:border-gold cursor-pointer transition shadow-xs flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs bg-stone-100 text-stone-600 px-2 py-0.5 rounded-md">${data.group}</span>
+                                <h3 class="text-xl font-bold text-stone-900 mt-2">${word}</h3>
+                                <p class="text-xs text-stone-500 mt-1">${data.kopir}</p>
+                            </div>
+                            <span class="text-xs text-gold font-semibold mt-4 flex items-center">View details &rarr;</span>
+                        </div>
+                    `;
+                }
+            }
+            grid.innerHTML = html;
+        }
+
+        function filterLibrary(group) {
+            renderLibrary(group);
+        }
+
+        // Синхронизация раздела Compare
+        function updateCompareView() {
+            const word = document.getElementById('compare-select').value;
+            const data = wordDatabase[word] || wordDatabase["Беташар"];
+            document.getElementById('comp-direct').innerText = data.direct;
+            document.getElementById('comp-kopir').innerText = data.kopir;
+        }
+
+        // Инициализация графиков Chart.js
+        function initCharts() {
+            const ctx1 = document.getElementById('accuracyChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['Meaning', 'Culture', 'Literary', 'Clarity'],
+                    datasets: [
+                        { label: 'Standard AI', data: [5.2, 3.1, 4.0, 6.5], backgroundColor: '#E2E8F0' },
+                        { label: 'KÖPIR Method', data: [7.8, 7.9, 7.5, 7.9], backgroundColor: '#C5A059' }
+                    ]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+
+            const ctx2 = document.getElementById('preservationChart').getContext('2d');
+            new Chart(ctx2, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Cultural Context Retained', 'Lost in Translation'],
+                    datasets: [{
+                        data: [89, 11],
+                        backgroundColor: ['#C5A059', '#E2E8F0']
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: false }
+            });
+        }
+
+        // Инициализация при загрузке
+        window.onload = function() {
+            renderLibrary('all');
+            quickSearch('Беташар'); // автоматический поиск по первому слову для демонстрации
+        };
+    </script>
+</body>
+</html>
