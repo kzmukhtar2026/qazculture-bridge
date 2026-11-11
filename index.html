@@ -23,8 +23,8 @@
 </head>
 <body class="bg-cream text-slate-800 min-h-screen flex flex-col">
 
-    <!-- ВЕРХНЯЯ ПАНЕЛЬ С ПАНОРАМОЙ (КАК НА СКРИНШОТЕ) -->
-    <header class="relative w-full h-64 md:h-72 bg-cover bg-center flex flex-col justify-between p-6 shadow-sm overflow-hidden" style="background-image: linear-gradient(rgba(255,255,255,0.1), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1600&q=80');">
+    <!-- ВЕРХНЯЯ ПАНЕЛЬ С ПАНОРАМОЙ (ГОДЫ, ПРИРОДА И ЮРТЫ КАК НА СКРИНШОТЕ) -->
+    <header class="relative w-full h-64 md:h-72 bg-cover bg-center flex flex-col justify-between p-6 shadow-sm overflow-hidden" style="background-image: linear-gradient(rgba(255,255,255,0.1), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1543968996-ee822b8176ba?auto=format&fit=crop&w=1600&q=80');">
         
         <!-- Верхняя строка: Логотип слева, переключатель KZ/EN справа -->
         <div class="max-w-7xl w-full mx-auto flex items-center justify-between z-10">
@@ -45,13 +45,14 @@
             <p class="text-sm md:text-base font-medium text-stone-100 mt-1" data-i18n="hero-tagline">Translate the word. Keep the culture.</p>
         </div>
         
-        <!-- Декоративные орнаменты по углам шапки -->
-        <div class="absolute bottom-2 right-4 text-white/40 text-2xl font-serif hidden md:block">❖ </div>
+        <!-- Декоративные элементы казахского орнамента в углах шапки -->
+        <div class="absolute bottom-2 right-4 text-white/50 text-2xl font-serif hidden md:block">❖ </div>
+        <div class="absolute bottom-2 left-4 text-white/50 text-2xl font-serif hidden md:block">❖ </div>
     </header>
 
     <div class="flex-1 flex flex-col md:flex-row">
         
-        <!-- БОКОВОЕ МЕНЮ СЛЕВА (КАК НА СКРИНШОТЕ) -->
+        <!-- БОКОВОЕ МЕНЮ СЛЕВА -->
         <aside class="w-full md:w-64 bg-white border-r border-stone-200 p-6 flex flex-col justify-between">
             <nav class="space-y-1">
                 <div class="mb-6 px-2 hidden md:block">
@@ -86,7 +87,7 @@
             <!-- РАЗДЕЛ 1: HOME -->
             <section id="tab-home" class="space-y-6 max-w-6xl mx-auto">
                 
-                <!-- Строка поиска слова (как на скриншоте с 'sybaga') -->
+                <!-- Строка поиска слова -->
                 <div class="bg-white p-3 md:p-4 rounded-3xl shadow-sm border border-stone-200">
                     <div class="flex flex-col md:flex-row gap-2">
                         <div class="flex-1 flex items-center px-4 py-2 bg-stone-50 rounded-2xl border border-stone-200 focus-within:border-gold">
@@ -105,7 +106,7 @@
                     <p id="search-sub" class="text-xs text-stone-400 mt-2 px-2" data-i18n="search-sub">Enter a Kazakh culture-specific word (e.g. sybaga, besik, kazy, betashar)</p>
                 </div>
 
-                <!-- 4 ИНФОРМАЦИОННЫЕ КАРТОЧКИ (ТОЧНО КАК НА СКРИНШОТЕ) -->
+                <!-- 4 ИНФОРМАЦИОННЫЕ КАРТОЧКИ -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
                     
                     <!-- Карточка 1: Direct Translation -->
@@ -115,11 +116,10 @@
                                 <span class="text-xs font-bold text-stone-500 uppercase tracking-wider flex items-center gap-1.5">
                                     <span class="w-2 h-2 rounded-full bg-blue-500"></span> 1. Direct Translation
                                 </span>
-                                <span class="text-stone-400 text-xs cursor-pointer hover:text-stone-600" title="Literal translation by standard AI">ⓘ</span>
                             </div>
                             <h3 id="res-direct" class="text-xl font-bold text-stone-900 mt-1">share of food</h3>
                         </div>
-                        <p id="res-direct-desc" class="text-xs text-stone-500 mt-6 leading-relaxed">A simple, direct translation of the word without cultural explanation.</p>
+                        <p class="text-xs text-stone-500 mt-6 leading-relaxed">A simple, direct translation of the word without cultural explanation.</p>
                     </div>
 
                     <!-- Карточка 2: KÖPIR Translation -->
@@ -129,11 +129,10 @@
                                 <span class="text-xs font-bold text-green-800 uppercase tracking-wider flex items-center gap-1.5">
                                     <span class="w-2 h-2 rounded-full bg-green-600"></span> 2. KÖPIR Translation
                                 </span>
-                                <span class="text-green-700/70 text-xs cursor-pointer" title="Cultural Bridge Framework">ⓘ</span>
                             </div>
                             <h3 id="res-kopir" class="text-lg font-bold text-green-950 mt-1">Sybaga – a special portion of food kept for a person as a sign of respect.</h3>
                         </div>
-                        <p id="res-kopir-desc" class="text-xs text-green-800/80 mt-4 leading-relaxed">A culturally accurate translation based on the KÖPIR method. The meaning, cultural context and usage are explained.</p>
+                        <p class="text-xs text-green-800/80 mt-4 leading-relaxed">A culturally accurate translation based on the KÖPIR method. The meaning, cultural context and usage are explained.</p>
                     </div>
 
                     <!-- Карточка 3: Cultural Note -->
@@ -143,11 +142,9 @@
                                 <span class="text-xs font-bold text-amber-800 uppercase tracking-wider flex items-center gap-1.5">
                                     <span class="w-2 h-2 rounded-full bg-amber-500"></span> 3. Cultural Note
                                 </span>
-                                <span class="text-amber-700/70 text-xs cursor-pointer">ⓘ</span>
                             </div>
-                            <p id="res-note" class="text-xs text-amber-950 mt-1 leading-relaxed">Sybaga is a special share of food that is kept for a guest or a respected person. It shows hospitality, respect and good wishes in Kazakh culture. It is a traditional custom that reflects kindness and care for others.</p>
+                            <p id="res-note" class="text-xs text-amber-950 mt-1 leading-relaxed">Sybaga is a special share of food that is kept for a guest or a respected person. It shows hospitality, respect and good wishes in Kazakh culture.</p>
                         </div>
-                        <div class="mt-4"></div>
                     </div>
 
                     <!-- Карточка 4: Translation Score -->
@@ -157,10 +154,7 @@
                                 <span class="text-xs font-bold text-stone-500 uppercase tracking-wider flex items-center gap-1.5">
                                     <span class="w-2 h-2 rounded-full bg-purple-500"></span> 4. Translation Score
                                 </span>
-                                <span class="text-stone-400 text-xs">ⓘ</span>
                             </div>
-                            
-                            <!-- Шкалы критериев -->
                             <div class="space-y-2 text-xs mt-2">
                                 <div>
                                     <div class="flex justify-between mb-1 text-stone-600"><span>Meaning</span> <span class="font-bold">2/2</span></div>
@@ -181,7 +175,6 @@
                             </div>
                         </div>
 
-                        <!-- Итоговый балл (как на скриншоте) -->
                         <div class="mt-4 pt-3 border-t border-stone-100">
                             <div class="flex justify-between items-center mb-1.5">
                                 <span class="text-xs font-bold text-stone-700">Total Score</span>
@@ -191,7 +184,6 @@
                                 <span>✅</span>
                                 <div>
                                     <span class="font-bold">Culture preserved</span>
-                                    <p class="text-[10px] text-emerald-700">The cultural meaning is well explained.</p>
                                 </div>
                             </div>
                         </div>
@@ -199,7 +191,7 @@
 
                 </div>
 
-                <!-- НИЖНИЙ БЛОК 1: EXAMPLES OF USAGE -->
+                <!-- ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ -->
                 <div class="bg-white p-6 rounded-3xl border border-stone-200 shadow-xs">
                     <h4 class="font-bold text-stone-900 mb-4 flex items-center space-x-2 text-sm uppercase tracking-wide">
                         <span>💬</span> <span data-i18n="examples-title">Examples of Usage</span>
@@ -210,24 +202,22 @@
                                 <span class="text-[10px] font-bold text-stone-400 uppercase tracking-wider block mb-1">Example Sentence (Kazakh)</span>
                                 <p id="res-ex-kz" class="font-medium text-stone-900 text-sm">Қонаққа арнап сыбаға қалдырды.</p>
                             </div>
-                            <button class="text-stone-400 hover:text-stone-700 p-2">🔊</button>
                         </div>
                         <div class="p-4 bg-stone-50 rounded-2xl border border-stone-100 flex items-center justify-between">
                             <div>
                                 <span class="text-[10px] font-bold text-stone-400 uppercase tracking-wider block mb-1">Example Sentence (English)</span>
                                 <p id="res-ex-en" class="font-medium text-stone-900 text-sm">They kept a sybaga for the guest.</p>
                             </div>
-                            <button class="text-stone-400 hover:text-stone-700 p-2">🔊</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- НИЖНИЙ БЛОК 2: RELATED WORDS (КАК НА СКРИНШОТЕ С ИЗОБРАЖЕНИЯМИ) -->
+                <!-- СВЯЗАННЫЕ СЛОВА -->
                 <div class="bg-white p-6 rounded-3xl border border-stone-200 shadow-xs">
                     <h4 class="font-bold text-stone-900 mb-4 flex items-center space-x-2 text-sm uppercase tracking-wide">
                         <span>🔗</span> <span data-i18n="related-title">Related Words</span>
                     </h4>
-                    <div id="res-related" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
                         <div onclick="quickSearch('kazy')" class="flex items-center space-x-2.5 p-2 rounded-2xl border border-stone-200 hover:border-gold cursor-pointer bg-stone-50 transition">
                             <img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=100&q=80" class="w-10 h-10 rounded-xl object-cover" alt="kazy">
                             <span class="text-xs font-semibold text-stone-800">kazy</span>
@@ -259,41 +249,23 @@
                     <h2 class="text-3xl font-bold tracking-tight" data-i18n="lib-heading">Word Library (Core Terms)</h2>
                     <p class="text-stone-500 mt-1" data-i18n="lib-sub">Explore verified cultural terms categorized into thematic groups.</p>
                 </div>
-                <div class="flex flex-wrap gap-2">
-                    <button onclick="filterLibrary('all')" class="px-4 py-2 rounded-xl bg-stone-900 text-white text-sm font-medium">All Groups</button>
-                    <button onclick="filterLibrary('Traditions')" class="px-4 py-2 rounded-xl bg-white border border-stone-200 text-stone-700 text-sm font-medium hover:bg-stone-50">Traditions & Rituals</button>
-                    <button onclick="filterLibrary('Lifestyle')" class="px-4 py-2 rounded-xl bg-white border border-stone-200 text-stone-700 text-sm font-medium hover:bg-stone-50">Nomadic Lifestyle</button>
-                </div>
-                <div id="library-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <!-- JS заполнение -->
-                </div>
+                <div id="library-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
             </section>
 
             <!-- РАЗДЕЛ 3: COMPARE -->
             <section id="tab-compare" class="hidden space-y-6 max-w-4xl mx-auto">
                 <div>
                     <h2 class="text-3xl font-bold tracking-tight" data-i18n="comp-heading">Translation Comparison</h2>
-                    <p class="text-stone-500 mt-1" data-i18n="comp-sub">Direct Machine Translation vs. KÖPIR Cultural Preservation Method.</p>
                 </div>
                 <div class="bg-white p-6 rounded-3xl border border-stone-200 space-y-6">
-                    <div class="flex items-center justify-between">
-                        <span class="font-medium text-stone-700">Select Word:</span>
-                        <select id="compare-select" onchange="updateCompareView()" class="px-4 py-2 rounded-xl border border-stone-200 bg-stone-50 font-semibold">
-                            <option value="sybaga">sybaga</option>
-                            <option value="besik">besik</option>
-                            <option value="betashar">betashar</option>
-                        </select>
-                    </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="p-5 rounded-2xl border border-red-100 bg-red-50/30">
                             <span class="text-xs font-bold text-red-600 uppercase">Standard AI</span>
                             <p id="comp-direct" class="text-lg font-bold text-stone-900 mt-2">share of food</p>
-                            <p class="text-xs text-stone-500 mt-3">❌ Loses deep cultural context and historical significance.</p>
                         </div>
                         <div class="p-5 rounded-2xl border border-blue-100 bg-soft-blue">
                             <span class="text-xs font-bold text-blue-600 uppercase">KÖPIR Method</span>
                             <p id="comp-kopir" class="text-lg font-bold text-blue-950 mt-2">Sybaga – a special portion of food kept for a person as a sign of respect.</p>
-                            <p class="text-xs text-blue-800 mt-3">✅ Preserves cultural value and explains the custom clearly.</p>
                         </div>
                     </div>
                 </div>
@@ -303,15 +275,12 @@
             <section id="tab-research" class="hidden space-y-6 max-w-5xl mx-auto">
                 <div>
                     <h2 class="text-3xl font-bold tracking-tight" data-i18n="res-heading">Research Statistics & Accuracy</h2>
-                    <p class="text-stone-500 mt-1" data-i18n="res-sub">Comparative analysis of standard LLMs vs. KÖPIR-assisted translation.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="bg-white p-6 rounded-3xl border border-stone-200 h-80 flex flex-col items-center justify-center">
-                        <h3 class="font-bold text-stone-800 mb-2 text-sm">Accuracy by Criteria (Max 8)</h3>
                         <div class="w-full h-60 flex items-center justify-center"><canvas id="accuracyChart"></canvas></div>
                     </div>
                     <div class="bg-white p-6 rounded-3xl border border-stone-200 h-80 flex flex-col items-center justify-center">
-                        <h3 class="font-bold text-stone-800 mb-2 text-sm">Cultural Preservation Rate (%)</h3>
                         <div class="w-full h-60 flex items-center justify-center"><canvas id="preservationChart"></canvas></div>
                     </div>
                 </div>
@@ -322,7 +291,7 @@
                 <div class="bg-white p-8 rounded-3xl border border-stone-200 space-y-6">
                     <h2 class="text-3xl font-bold tracking-tight" data-i18n="about-heading">About QazCulture Bridge</h2>
                     <p class="text-stone-600 leading-relaxed">
-                        Project <strong>“Can AI Translate Kazakh Culture?”</strong> introduces the <strong>KÖPIR әдісі</strong> (bridge method), bridging the gap between literal machine translations and rich intangible cultural heritage.
+                        Project <strong>“Can AI Translate Kazakh Culture?”</strong> introduces the <strong>KÖPIR әдісі</strong>.
                     </p>
                 </div>
             </section>
@@ -336,8 +305,7 @@
             "sybaga": {
                 direct: "share of food",
                 kopir: "Sybaga – a special portion of food kept for a person as a sign of respect.",
-                note: "Sybaga is a special share of food that is kept for a guest or a respected person. It shows hospitality, respect and good wishes in Kazakh culture. It is a traditional custom that reflects kindness and care for others.",
-                scoreTotal: "7 / 8",
+                note: "Sybaga is a special share of food that is kept for a guest or a respected person. It shows hospitality, respect and good wishes in Kazakh culture.",
                 exKz: "Қонаққа арнап сыбаға қалдырды.",
                 exEn: "They kept a sybaga for the guest.",
                 group: "Traditions"
@@ -345,8 +313,7 @@
             "besik": {
                 direct: "baby cradle",
                 kopir: "Besik – traditional sacred wooden cradle for infants.",
-                note: "Besik is a sacred cradle associated with rich rituals (besik salu) symbolizing family continuity, protection, and nomadic heritage.",
-                scoreTotal: "8 / 8",
+                note: "Besik is a sacred cradle associated with rich rituals symbolizing family continuity.",
                 exKz: "Сәбиді бесікке бөледі.",
                 exEn: "The baby was placed into the traditional besik.",
                 group: "Traditions"
@@ -354,8 +321,7 @@
             "betashar": {
                 direct: "face revealing ceremony",
                 kopir: "Betashar – traditional bride unveiling ritual with poetry.",
-                note: "A grand wedding ceremony where the bride is introduced to relatives through traditional songs (toibastar).",
-                scoreTotal: "7.8 / 8",
+                note: "A grand wedding ceremony where the bride is introduced to relatives through traditional songs.",
                 exKz: "Тойда әсерлі беташар рәсімі өтті.",
                 exEn: "An impressive betashar ceremony took place at the wedding.",
                 group: "Traditions"
@@ -369,9 +335,7 @@
                 "search-sub": "Enter a Kazakh culture-specific word (e.g. sybaga, besik, kazy, betashar)",
                 "btn-translate": "Translate", "examples-title": "Examples of Usage", "related-title": "Related Words",
                 "lib-heading": "Word Library (Core Terms)", "lib-sub": "Explore verified cultural terms categorized into thematic groups.",
-                "comp-heading": "Translation Comparison", "comp-sub": "Direct Machine Translation vs. KÖPIR Cultural Preservation Method.",
-                "res-heading": "Research Statistics & Accuracy", "res-sub": "Comparative analysis of standard LLMs vs. KÖPIR-assisted translation.",
-                "about-heading": "About QazCulture Bridge"
+                "comp-heading": "Translation Comparison", "res-heading": "Research Statistics & Accuracy", "about-heading": "About QazCulture Bridge"
             },
             KZ: {
                 "nav-home": "Басты бет", "nav-library": "Кітапхана", "nav-compare": "Салыстыру", "nav-research": "Зерттеу", "nav-about": "Жоба туралы",
@@ -379,9 +343,7 @@
                 "search-sub": "Қазақша мәдени сөзді енгізіңіз (мыс. sybaga, besik, kazy, betashar)",
                 "btn-translate": "Аудару", "examples-title": "Қолдану мысалдары", "related-title": "Ұқсас сөздер",
                 "lib-heading": "Сөздер кітапханасы", "lib-sub": "Топтарға бөлінген тексерілген терминдер.",
-                "comp-heading": "Аударманы салыстыру", "comp-sub": "Машиналық аударма және KÖPIR әдісі.",
-                "res-heading": "Зерттеу статистикасы", "res-sub": "Салыстырмалы талдау.",
-                "about-heading": "QazCulture Bridge туралы"
+                "comp-heading": "Аударманы салыстыру", "res-heading": "Зерттеу статистикасы", "about-heading": "QazCulture Bridge туралы"
             }
         };
 
@@ -420,38 +382,25 @@
             switchTab('home');
         }
 
-        function clearInput() {
-            document.getElementById('word-input').value = '';
-        }
+        function clearInput() { document.getElementById('word-input').value = ''; }
 
-        function updateCompareView() {
-            const word = document.getElementById('compare-select').value;
-            const data = wordDatabase[word] || wordDatabase["sybaga"];
-            document.getElementById('comp-direct').innerText = data.direct;
-            document.getElementById('comp-kopir').innerText = data.kopir;
-        }
-
-        function renderLibrary(filter = 'all') {
+        function renderLibrary() {
             const grid = document.getElementById('library-grid');
             let html = '';
             for (let [word, data] of Object.entries(wordDatabase)) {
-                if (filter === 'all' || data.group === filter) {
-                    html += `
-                        <div onclick="quickSearch('${word}')" class="bg-white p-5 rounded-3xl border border-stone-200 hover:border-gold cursor-pointer transition shadow-xs flex flex-col justify-between">
-                            <div>
-                                <span class="text-[10px] bg-stone-100 text-stone-600 px-2.5 py-1 rounded-lg font-semibold uppercase">${data.group}</span>
-                                <h3 class="text-xl font-bold text-stone-900 mt-3">${word}</h3>
-                                <p class="text-xs text-stone-500 mt-1 line-clamp-2">${data.kopir}</p>
-                            </div>
-                            <span class="text-xs text-gold font-semibold mt-4 flex items-center">View details &rarr;</span>
+                html += `
+                    <div onclick="quickSearch('${word}')" class="bg-white p-5 rounded-3xl border border-stone-200 hover:border-gold cursor-pointer transition shadow-xs flex flex-col justify-between">
+                        <div>
+                            <span class="text-[10px] bg-stone-100 text-stone-600 px-2.5 py-1 rounded-lg font-semibold uppercase">${data.group}</span>
+                            <h3 class="text-xl font-bold text-stone-900 mt-3">${word}</h3>
+                            <p class="text-xs text-stone-500 mt-1 line-clamp-2">${data.kopir}</p>
                         </div>
-                    `;
-                }
+                        <span class="text-xs text-gold font-semibold mt-4 flex items-center">View details &rarr;</span>
+                    </div>
+                `;
             }
             grid.innerHTML = html;
         }
-
-        function filterLibrary(group) { renderLibrary(group); }
 
         function initCharts() {
             const ctx1 = document.getElementById('accuracyChart').getContext('2d');
@@ -477,7 +426,7 @@
             });
         }
 
-        window.onload = function() { renderLibrary('all'); handleTranslate(); };
+        window.onload = function() { renderLibrary(); handleTranslate(); };
     </script>
 </body>
 </html>
